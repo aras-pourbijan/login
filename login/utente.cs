@@ -10,12 +10,13 @@ namespace login
     internal class utente
     {
 
-        public static string userName = "aras.p";
-        
-        public static string password = "2022";
+        public static string userName;
+
+        public static string password;
         public static string conferma;
         public static bool loggedIn = false;
         public static DateTime oraAccesso;
+        public static List<DateTime> listaAccessi = new List<DateTime>();
 
         public void menuStart()
         {
@@ -56,9 +57,17 @@ namespace login
             Environment.Exit(0);    
         }
 
-        private static void mostraLista()
+        private void mostraLista()
         {
-           
+            Console.WriteLine("--------------lista Accessi --------------");
+            foreach (DateTime acesso in listaAccessi)
+            {
+                Console.WriteLine("**********");
+                Console.WriteLine($"acesso:{oraAccesso}");
+
+            }
+            Console.WriteLine("------------------------------------------");
+            menuStart();
         }
 
         private void verificadata()
@@ -86,11 +95,13 @@ namespace login
 
         private void logout()
         {
-            if (utente.loggedIn = true)
+            if (utente.loggedIn == true)
             {
                 userName = "";
                 password = "";
-                  
+                loggedIn = false;
+
+
                 Console.WriteLine("Ha effettuato il logout.");
                 menuStart();
             }
@@ -113,6 +124,7 @@ namespace login
             if ((utente.userName != "") && (password == conferma)) {
                loggedIn= true;
                 utente.oraAccesso =  DateTime.Now;
+                    utente.listaAccessi.Add(oraAccesso);
                 Console.WriteLine($"Ciao {userName} ");     
 
                 menuStart();
