@@ -33,13 +33,28 @@ namespace login
                 Console.WriteLine("=======================================");
                 string scelta = Console.ReadLine();
 
-                if (scelta == "1") { Console.WriteLine("login:");
+                if (scelta == "1") 
+                { Console.WriteLine("login:");
                     login();}
-                else if (scelta == "2") { Console.WriteLine("logout:"); logout(); }
-                else if (scelta == "3") { Console.WriteLine("verifica:"); verificadata(); }
-                else if (scelta == "4") { Console.WriteLine("Lista degli accecci:"); mostraLista(); }
-                else if (scelta == "5") { Console.WriteLine("sei uscita !"); esci(); }
-                else { Console.WriteLine("scelta sbagliata! riprova"); menuStart(); }
+
+                else if (scelta == "2")
+                { Console.WriteLine("logout:");
+                    logout(); }
+
+                else if (scelta == "3") 
+                { Console.WriteLine("verifica:");
+                    verificadata(); }
+
+                else if (scelta == "4") 
+                { Console.WriteLine("Lista degli accecci:");
+                    mostraLista(); }
+                else if (scelta == "5") 
+                { Console.WriteLine("sei uscita !");
+                    esci(); }
+                else 
+                { Console.WriteLine("scelta sbagliata! riprova");
+                    menuStart(); }
+
 
 
             }
@@ -60,10 +75,11 @@ namespace login
         private void mostraLista()
         {
             Console.WriteLine("--------------lista Accessi --------------");
-            foreach (DateTime acesso in listaAccessi)
+            Console.WriteLine("------------------------------------------");
+            foreach (DateTime accesso in listaAccessi)
             {
                 Console.WriteLine("**********");
-                Console.WriteLine($"acesso:{oraAccesso}");
+                Console.WriteLine($"acesso:{accesso}");
 
             }
             Console.WriteLine("------------------------------------------");
@@ -78,7 +94,6 @@ namespace login
                 {
                     Console.WriteLine($"sei entrato alle {oraAccesso}");
                 }
-
             }
             catch
             {
@@ -87,10 +102,7 @@ namespace login
             finally
             {
                 menuStart();
-            }
-
-            
-            
+            }         
         }
 
         private void logout()
